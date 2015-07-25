@@ -14,7 +14,25 @@
 [coffee]: http://coffeescript.org
 [dr-axel]: http://www.2ality.com/2014/10/es6-promises-api.html
 
-##
+### Installation
+
+```
+npm install promise-coffee
+```
+
+### Usage
+
+```coffeescript
+# from CoffeeScript:
+Promise = require 'promise-coffee'
+```
+
+```javascript
+// from JavaScript:
+var Promise = require('promise-coffee');
+```
+
+# 
 
 <sub>
   This project was developed as a personal exercise and is not intended for
