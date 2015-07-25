@@ -3,6 +3,8 @@
     align="right" alt="Promises/A+ logo" />
 </a>
 
+[![Build Status](https://travis-ci.org/diogocampos/promise-coffee.svg?branch=master)](https://travis-ci.org/diogocampos/promise-coffee)
+
 # promise-coffee
 
 [Promises/A+][aplus]-compliant promises in 80-ish lines of
