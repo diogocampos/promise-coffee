@@ -1,0 +1,33 @@
+{
+  "name": "promise-coffee",
+  "version": "1.0.0",
+  "description": "Promises/A+-compliant promises in ~80 lines of CoffeeScript",
+  "main": "promise.js",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.9.3",
+    "promises-aplus-tests": "^2.1.1"
+  },
+  "scripts": {
+    "prepublish": "coffee -c *.coffee test/*.coffee",
+    "test": "promises-aplus-tests test/promises-aplus-tests-adapter"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diogocampos/promise-coffee.git"
+  },
+  "keywords": [
+    "promise",
+    "promises-aplus",
+    "coffeescript",
+    "coffee-script"
+  ],
+  "author": "Diogo Campos <diogocampos@me.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/diogocampos/promise-coffee/issues"
+  },
+  "homepage": "https://github.com/diogocampos/promise-coffee#readme"
+}
