@@ -1,6 +1,6 @@
 {
   "name": "promise-coffee",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Promises/A+-compliant promises in ~80 lines of CoffeeScript",
   "main": "promise.js",
   "directories": {
