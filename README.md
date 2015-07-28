@@ -33,10 +33,3 @@ Promise = require 'promise-coffee'
 // from JavaScript:
 var Promise = require('promise-coffee');
 ```
-
-# 
-
-<sub>
-  This project was developed as a personal exercise and is not intended for
-  use in production environments. Proceed with caution.
-</sub>
