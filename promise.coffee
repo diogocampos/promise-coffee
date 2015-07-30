@@ -43,20 +43,6 @@ class Promise
     @then null, onReject
 
 
-  finally: (callback) ->
-    constructor = @constructor
-    @then (value) ->
-      constructor.resolve(callback()).then -> value
-    ,(reason) ->
-      constructor.resolve(callback()).then -> throw reason
-
-
-  done: (onFulfill, onReject) ->
-    promise = if onFulfill or onReject then @then onFulfill, onReject else this
-    promise.catch (reason) ->
-      setImmediate -> throw reason
-
-
   _resolve: (success) -> (result) =>
     return if @_resolved
     @_resolved = true
@@ -71,14 +57,14 @@ class Promise
       catch err
         return @_settle false, err
 
-      if promise  # resolved with thenable
+      if promise  # resolved with a thenable
         return promise
           .then (result) =>
             @_settle true, result
           ,(reason) =>
             @_settle false, reason
 
-    # resolved with non-thenable or rejected
+    # resolved with a non-thenable or rejected
     @_settle success, result
 
 
@@ -102,6 +88,10 @@ class Promise
     promise or new this (fulfill, reject) -> fulfill value
 
 
+  @reject: (reason) ->
+    new this (fulfill, reject) -> reject reason
+
+
   @_normalizeThenable: (arg) ->
     thenMethod = arg?.then
     if isFunction thenMethod
@@ -113,57 +103,3 @@ class Promise
         new this (fulfill, reject) -> thenMethod.call arg, fulfill, reject
     else
       false
-
-
-  @reject: (reason) ->
-    new this (fulfill, reject) -> reject reason
-
-
-  @all: (values) ->
-    throw new TypeError 'argument must be an array' unless isArray values
-    return @resolve [] if values.length is 0
-
-    new this (fulfill, reject) =>
-      pending = values.length
-      results = new Array pending
-
-      onFulfill = (i) -> (res) ->
-        results[i] = res
-        fulfill results if --pending is 0
-
-      for value, i in values
-        @resolve value
-          .then (onFulfill i), reject
-
-
-  @allConcurrent: (values) ->
-    @all values
-
-
-  @allSequential: (values) ->
-    throw new TypeError 'argument must be an array' unless isArray values
-    return @resolve [] if values.length is 0
-
-    new this (fulfill, reject) =>
-      count = values.length
-      results = []
-      chain = @resolve()
-
-      for next in values
-        chain = chain
-          .then (res) ->
-            length = results.push res
-            fulfill results if length is count
-            next
-          ,(reason) ->
-            reject reason
-
-
-  @race: (values) ->
-    throw new TypeError 'argument must be an array' unless isArray values
-    return @resolve() if values.length is 0
-
-    new this (fulfill, reject) =>
-      for value in values
-        @resolve value
-          .then fulfill, reject
