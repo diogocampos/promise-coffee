@@ -7,8 +7,8 @@
 
 # promise-coffee
 
-[Promises/A+][aplus]-compliant promises in 80-ish lines of
-[CoffeeScript][coffee], plus a few non-standard additions.
+[Promises/A+][aplus] standard-compliant promises in less than 80 lines of
+readable [CoffeeScript][coffee].
 
 (Thanks, [Dr. Axel Rauschmayer][dr-axel])
 
