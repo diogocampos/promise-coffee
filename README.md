@@ -9,7 +9,7 @@
 
 # promise-coffee
 
-[Promises/A+][aplus] standard-compliant promises in less than 80 lines of
+[Promises/A+][aplus] spec-compliant promises in less than 80 lines of
 readable [CoffeeScript][coffee].
 
 (Thanks, [Dr. Axel Rauschmayer][dr-axel])
