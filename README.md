@@ -1,6 +1,8 @@
-<a href="https://github.com/promises-aplus/promises-tests">
+<a href="https://promisesaplus.com/">
   <img src="https://promisesaplus.com/assets/logo-small.png"
-    align="right" alt="Promises/A+ logo" />
+       alt="Promises/A+ logo"
+       title="Promises/A+ 1.0 compliant"
+       align="right" />
 </a>
 
 [![Build Status](https://travis-ci.org/diogocampos/promise-coffee.svg?branch=master)](https://travis-ci.org/diogocampos/promise-coffee)
