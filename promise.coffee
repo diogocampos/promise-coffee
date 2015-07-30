@@ -44,11 +44,11 @@ class Promise
 
 
   finally: (callback) ->
-    P = @constructor
+    constructor = @constructor
     @then (value) ->
-      P.resolve(callback()).then -> value
+      constructor.resolve(callback()).then -> value
     ,(reason) ->
-      P.resolve(callback()).then -> throw reason
+      constructor.resolve(callback()).then -> throw reason
 
 
   done: (onFulfill, onReject) ->
@@ -102,15 +102,15 @@ class Promise
     promise or new this (fulfill, reject) -> fulfill value
 
 
-  @_normalizeThenable: (value) ->
-    then_ = value?.then
-    if isFunction then_
-      if value instanceof this
-        value
-      else if (typeof value) in ['boolean', 'number']
+  @_normalizeThenable: (arg) ->
+    thenMethod = arg?.then
+    if isFunction thenMethod
+      if arg instanceof this
+        arg
+      else if (typeof arg) in ['boolean', 'number']
         false
       else
-        new this (fulfill, reject) -> then_.call value, fulfill, reject
+        new this (fulfill, reject) -> thenMethod.call arg, fulfill, reject
     else
       false
 
