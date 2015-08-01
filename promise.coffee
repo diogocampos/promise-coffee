@@ -14,6 +14,7 @@ class Promise
 
   constructor: (executor) ->
     @_reactions = []
+
     fulfill = @_resolve true
     reject = @_resolve false
 
@@ -58,11 +59,11 @@ class Promise
         return @_settle false, err
 
       if promise  # resolved with a thenable
-        return promise
-          .then (result) =>
-            @_settle true, result
-          ,(reason) =>
-            @_settle false, reason
+        promise.then (result) =>
+          @_settle true, result
+        ,(reason) =>
+          @_settle false, reason
+        return
 
     # resolved with a non-thenable or rejected
     @_settle success, result
