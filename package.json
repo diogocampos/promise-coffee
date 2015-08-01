@@ -11,7 +11,7 @@
     "promises-aplus-tests": "^2.1.1"
   },
   "scripts": {
-    "prepublish": "coffee -c *.coffee test/*.coffee",
+    "prepublish": "coffee --compile .",
     "test": "promises-aplus-tests test/promises-aplus-tests-adapter"
   },
   "repository": {
