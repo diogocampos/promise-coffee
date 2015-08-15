@@ -7,6 +7,8 @@
 
 [![Build Status](https://travis-ci.org/diogocampos/promise-coffee.svg?branch=master)](https://travis-ci.org/diogocampos/promise-coffee)
 
+[![NPM](https://nodei.co/npm/promise-coffee.png)](https://nodei.co/npm/promise-coffee/)
+
 # promise-coffee
 
 [Promises/A+][aplus] spec-compliant promises in less than 80 lines of
