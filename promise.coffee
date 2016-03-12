@@ -2,7 +2,6 @@
 
 push = Array::push
 
-isArray = Array.isArray
 isFunction = (arg) -> typeof arg is 'function'
 
 defaultOnFulfill = (result) -> result
