@@ -4,7 +4,7 @@ push = Array::push
 
 isFunction = (arg) -> typeof arg is 'function'
 
-defaultOnFulfill = (result) -> result
+defaultOnResolve = (result) -> result
 defaultOnReject = (reason) -> throw reason
 
 
@@ -14,29 +14,29 @@ class Promise
   constructor: (executor) ->
     @_reactions = []
 
-    fulfill = @_resolve true
+    resolve = @_resolve true
     reject = @_resolve false
 
     try
-      executor fulfill, reject
+      executor resolve, reject
     catch err
       reject err
 
 
-  then: (onFulfill, onReject) ->
-    onFulfill = defaultOnFulfill unless isFunction onFulfill
+  then: (onResolve, onReject) ->
+    onResolve = defaultOnResolve unless isFunction onResolve
     onReject = defaultOnReject unless isFunction onReject
 
-    new @constructor (fulfill, reject) =>
+    new @constructor (resolve, reject) =>
       enqueue = if @_settled then setImmediate else push.bind @_reactions
 
       enqueue =>
-        callback = if @_success then onFulfill else onReject
+        callback = if @_success then onResolve else onReject
         try
           result = callback @_result
         catch err
           return reject err
-        fulfill result
+        resolve result
 
 
   catch: (onReject) ->
@@ -85,11 +85,11 @@ class Promise
     catch err
       return @reject err
 
-    promise or new this (fulfill, reject) -> fulfill value
+    promise or new this (resolve, reject) -> resolve value
 
 
   @reject: (reason) ->
-    new this (fulfill, reject) -> reject reason
+    new this (resolve, reject) -> reject reason
 
 
   @_normalizeThenable: (arg) ->
@@ -101,4 +101,4 @@ class Promise
     else if (typeof arg) in ['boolean', 'number']
       false
     else
-      new this (fulfill, reject) -> thenMethod.call arg, fulfill, reject
+      new this (resolve, reject) -> thenMethod.call arg, resolve, reject
