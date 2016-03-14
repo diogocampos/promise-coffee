@@ -1,7 +1,7 @@
 {
   "name": "promise-coffee",
   "version": "1.1.1",
-  "description": "Promises/A+ spec-compliant promises in less than 80 lines of readable CoffeeScript",
+  "description": "Promises/A+ implemented in readable CoffeeScript",
   "main": "promise.js",
   "directories": {
     "test": "test"
