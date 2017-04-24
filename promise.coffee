@@ -96,11 +96,11 @@ class Promise
 
   @_normalizeThenable: (arg) ->
     thenMethod = arg?.then
-    return false unless isFunction thenMethod
+    return null unless isFunction thenMethod
 
     if arg instanceof this
       arg
     else if (typeof arg) in ['boolean', 'number']
-      false
+      null
     else
       new this (resolve, reject) -> thenMethod.call arg, resolve, reject
