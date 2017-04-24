@@ -1,6 +1,6 @@
 {
   "name": "promise-coffee",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "Promises/A+ implemented in readable CoffeeScript",
   "main": "dist/promise.js",
   "files": [
