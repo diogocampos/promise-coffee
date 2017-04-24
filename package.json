@@ -2,17 +2,15 @@
   "name": "promise-coffee",
   "version": "1.1.2",
   "description": "Promises/A+ implemented in readable CoffeeScript",
-  "main": "promise.js",
-  "directories": {
-    "test": "test"
-  },
+  "main": "dist/promise.js",
+  "files": ["dist"],
   "devDependencies": {
     "coffee-script": "^1.9.3",
     "promises-aplus-tests": "^2.1.1"
   },
   "scripts": {
-    "prepublish": "coffee --compile .",
-    "test": "promises-aplus-tests test/promises-aplus-tests-adapter"
+    "prepublish": "coffee --output dist --compile promise.coffee",
+    "test": "coffee tests tests/adapter"
   },
   "repository": {
     "type": "git",
