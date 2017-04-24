@@ -3,10 +3,12 @@
   "version": "1.1.2",
   "description": "Promises/A+ implemented in readable CoffeeScript",
   "main": "dist/promise.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
-    "coffee-script": "^1.9.3",
-    "promises-aplus-tests": "^2.1.1"
+    "coffee-script": "1.12.5",
+    "promises-aplus-tests": "2.1.2"
   },
   "scripts": {
     "prepublish": "coffee --output dist --compile promise.coffee",
