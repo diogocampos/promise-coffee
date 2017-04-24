@@ -50,12 +50,14 @@ class Promise
     if success
       if result is this
         reason = new TypeError "can't resolve a promise with itself"
-        return @_settle false, reason
+        @_settle false, reason
+        return
 
       try
         promise = @constructor._normalizeThenable result
       catch err
-        return @_settle false, err
+        @_settle false, err
+        return
 
       if promise  # resolved with a thenable
         promise.then (result) =>
