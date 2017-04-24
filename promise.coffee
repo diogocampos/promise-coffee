@@ -12,7 +12,7 @@ module.exports =
 class Promise
 
   constructor: (executor) ->
-    @_reactions = []
+    @_callbacks = []
 
     resolve = @_resolve true
     reject = @_resolve false
@@ -28,7 +28,7 @@ class Promise
     onReject = defaultOnReject unless isFunction onReject
 
     new @constructor (resolve, reject) =>
-      enqueue = if @_settled then setImmediate else push.bind @_reactions
+      enqueue = if @_settled then setImmediate else push.bind @_callbacks
 
       enqueue =>
         callback = if @_success then onResolve else onReject
@@ -77,8 +77,8 @@ class Promise
     @_success = success
     @_result = result
 
-    setImmediate reaction for reaction in @_reactions
-    @_reactions = null
+    setImmediate callback for callback in @_callbacks
+    @_callbacks = null
 
 
   @resolve: (value) ->
